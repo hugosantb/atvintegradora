@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ObraJá — Construção Civil ao seu alcance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-deep: #0A1628;
+  --blue-mid: #1B3A6B;
+  --blue-brand: #1E5FCC;
+  --blue-bright: #3B82F6;
+  --blue-light: #DBEAFE;
+  --orange: #F97316;
+  --orange-light: #FED7AA;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-400: #94A3B8;
+  --gray-600: #475569;
+  --gray-800: #1E293B;
+  --gold: #F59E0B;
+  --green: #10B981;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 4px 24px rgba(10,22,40,0.10);
+  --shadow-lg: 0 12px 48px rgba(10,22,40,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--gray-800);
+  overflow-x: hidden;
+}
+
+/* ── TYPOGRAPHY ── */
+h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(10,22,40,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 68px;
+}
+.navbar-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;
+  color: var(--white); text-decoration: none; letter-spacing: -0.5px;
+}
+.navbar-logo span { color: var(--orange); }
+.navbar-links { display: flex; gap: 2rem; list-style: none; }
+.navbar-links a {
+  color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem;
+  font-weight: 500; transition: color .2s;
+}
+.navbar-links a:hover { color: var(--white); }
+.navbar-actions { display: flex; gap: 0.75rem; align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.25rem; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; cursor: pointer; transition: all .2s; text-decoration: none; border: none; }
+.btn-ghost { background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.2); }
+.btn-ghost:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+.btn-primary { background: var(--blue-brand); color: var(--white); }
+.btn-primary:hover { background: #1a54b8; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(30,95,204,0.4); }
+.btn-orange { background: var(--orange); color: var(--white); }
+.btn-orange:hover { background: #ea6c0a; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(249,115,22,0.4); }
+.btn-lg { padding: 0.85rem 2rem; font-size: 1rem; border-radius: 10px; }
+.btn-outline { background: transparent; color: var(--blue-brand); border: 2px solid var(--blue-brand); }
+.btn-outline:hover { background: var(--blue-brand); color: var(--white); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--blue-deep);
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding-top: 68px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(30,95,204,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(249,115,22,0.10) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto; padding: 4rem 5%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.25);
+  color: var(--orange); border-radius: 999px; padding: 0.35rem 0.9rem;
+  font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800;
+  color: var(--white); line-height: 1.1; letter-spacing: -1.5px;
+  margin-bottom: 1.25rem;
+}
+.hero h1 .highlight { color: var(--orange); }
+.hero p {
+  color: rgba(255,255,255,0.65); font-size: 1.1rem; line-height: 1.7;
+  margin-bottom: 2rem; max-width: 480px;
+}
+.hero-search {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  padding: 0.5rem;
+  display: flex; gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.hero-search input {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+  padding: 0.6rem 1rem;
+}
+.hero-search input::placeholder { color: rgba(255,255,255,0.4); }
+.hero-search select {
+  background: rgba(255,255,255,0.08); border: none; outline: none;
+  color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+  padding: 0.5rem 0.75rem; border-radius: 8px; cursor: pointer;
+}
+.hero-search select option { background: var(--blue-deep); color: var(--white); }
+.hero-stats { display: flex; gap: 2rem; }
+.stat { }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--white); }
+.stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+.hero-visual {
+  position: relative; display: flex; justify-content: center; align-items: center;
+}
+.hero-card-float {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem; width: 100%; max-width: 340px;
+  animation: floatY 5s ease-in-out infinite;
+}
+@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+.pro-card-mini { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 1rem; }
+.pro-avatar-lg {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; background: linear-gradient(135deg, var(--blue-brand), var(--blue-bright));
+  flex-shrink: 0;
+}
+.pro-name { color: var(--white); font-weight: 700; font-size: 0.95rem; }
+.pro-role { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+.verified-badge {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3);
+  color: var(--green); border-radius: 999px; padding: 0.2rem 0.6rem; font-size: 0.72rem; font-weight: 600;
+}
+.stars { color: var(--gold); font-size: 0.9rem; }
+.rating-line { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+.rating-num { color: var(--white); font-weight: 700; font-size: 0.9rem; }
+.rating-count { color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+.gallery-mini { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.4rem; border-radius: 10px; overflow: hidden; }
+.gallery-mini-item {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; border-radius: 6px;
+}
+.float-badge {
+  position: absolute;
+  background: var(--white); border-radius: 12px; padding: 0.7rem 1rem;
+  box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.82rem; font-weight: 600; color: var(--gray-800);
+}
+.float-badge.badge-1 { top: -20px; right: -30px; }
+.float-badge.badge-2 { bottom: -20px; left: -30px; }
+.float-dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-green { background: var(--green); }
+.dot-orange { background: var(--orange); }
+
+/* ── SECTIONS ── */
+.section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+.section-full { padding: 5rem 5%; }
+.section-label {
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--blue-brand); margin-bottom: 0.75rem;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800;
+  letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 0.75rem;
+}
+.section-sub { color: var(--gray-600); font-size: 1rem; line-height: 1.6; max-width: 500px; }
+
+/* ── CATEGORIES ── */
+.cats-bg { background: var(--gray-50); }
+.cats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+.cat-card {
+  background: var(--white); border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg); padding: 1.75rem 1rem;
+  text-align: center; cursor: pointer;
+  transition: all .25s; text-decoration: none; color: var(--gray-800);
+  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+}
+.cat-card:hover {
+  border-color: var(--blue-brand); background: var(--blue-brand);
+  color: var(--white); transform: translateY(-4px); box-shadow: var(--shadow-lg);
+}
+.cat-icon { font-size: 2.2rem; display: block; }
+.cat-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; }
+.cat-count { font-size: 0.75rem; opacity: 0.6; }
+
+/* ── FILTERS ── */
+.filter-bar {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg); padding: 1.25rem 1.5rem;
+  display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  margin-bottom: 2rem; box-shadow: var(--shadow);
+}
+.filter-group { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; min-width: 150px; }
+.filter-label { font-size: 0.72rem; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.05em; }
+.filter-group select, .filter-group input {
+  border: none; outline: none; font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; color: var(--gray-800); background: transparent; cursor: pointer;
+}
+.filter-divider { width: 1px; background: var(--gray-200); align-self: stretch; margin: 0 0.25rem; }
+
+/* ── PROVIDER CARDS ── */
+.providers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+.provider-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg); overflow: hidden;
+  transition: all .3s; cursor: pointer; position: relative;
+}
+.provider-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--blue-brand); }
+.card-banner {
+  height: 80px; display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; position: relative;
+}
+.premium-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: linear-gradient(135deg, #F59E0B, #EF4444);
+  color: white; font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; border-radius: 999px; padding: 0.2rem 0.6rem;
+}
+.card-avatar {
+  width: 64px; height: 64px; border-radius: 50%; border: 3px solid var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; margin: -32px auto 0; position: relative; z-index: 1;
+  box-shadow: var(--shadow);
+}
+.card-body { padding: 0.75rem 1.25rem 1.25rem; }
+.card-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; text-align: center; margin-bottom: 0.25rem; }
+.card-role { text-align: center; color: var(--gray-400); font-size: 0.8rem; margin-bottom: 0.5rem; }
+.card-badges { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.badge {
+  font-size: 0.7rem; font-weight: 600; border-radius: 999px; padding: 0.2rem 0.6rem;
+}
+.badge-blue { background: var(--blue-light); color: var(--blue-brand); }
+.badge-green { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+.card-rating { display: flex; justify-content: center; align-items: center; gap: 0.4rem; margin-bottom: 0.75rem; }
+.card-rating .stars { font-size: 0.85rem; }
+.card-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--gray-600); border-top: 1px solid var(--gray-100); padding-top: 0.75rem; margin-top: 0.25rem; }
+.card-price { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--blue-brand); font-size: 0.9rem; }
+.card-actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+.card-actions .btn { flex: 1; justify-content: center; font-size: 0.82rem; padding: 0.55rem 0.75rem; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(10,22,40,0.85); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem; opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--white); border-radius: 24px; max-width: 720px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  transform: scale(0.95); transition: transform .3s;
+}
+.modal-overlay.open .modal { transform: scale(1); }
+.modal-header {
+  background: var(--blue-deep); padding: 2rem; border-radius: 24px 24px 0 0;
+  position: relative; display: flex; gap: 1.5rem; align-items: flex-start;
+}
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: rgba(255,255,255,0.1); border: none; color: white;
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center; transition: background .2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.2); }
+.modal-avatar {
+  width: 80px; height: 80px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 2rem;
+  background: linear-gradient(135deg, var(--blue-brand), var(--blue-bright));
+  flex-shrink: 0;
+}
+.modal-info { flex: 1; }
+.modal-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--white); margin-bottom: 0.25rem; }
+.modal-role { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 0.6rem; }
+.modal-body { padding: 2rem; }
+.modal-section { margin-bottom: 1.75rem; }
+.modal-section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--gray-800); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gray-100); }
+.services-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.service-tag { background: var(--blue-light); color: var(--blue-brand); border-radius: 8px; padding: 0.35rem 0.75rem; font-size: 0.82rem; font-weight: 500; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; }
+.gallery-item {
+  aspect-ratio: 4/3; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; background: var(--gray-100);
+}
+.reviews-list { display: flex; flex-direction: column; gap: 1rem; }
+.review-card {
+  background: var(--gray-50); border-radius: var(--radius); padding: 1rem;
+  border-left: 3px solid var(--blue-brand);
+}
+.review-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+.review-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  background: var(--gray-200); flex-shrink: 0;
+}
+.review-name { font-weight: 600; font-size: 0.88rem; }
+.review-date { color: var(--gray-400); font-size: 0.75rem; }
+.review-text { font-size: 0.85rem; color: var(--gray-600); line-height: 1.5; }
+.modal-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.modal-actions .btn { flex: 1; justify-content: center; min-width: 140px; }
+
+/* ── RATING FORM ── */
+.rating-form { background: var(--gray-50); border-radius: var(--radius); padding: 1.25rem; }
+.stars-input { display: flex; gap: 0.25rem; margin: 0.5rem 0; }
+.star-btn {
+  font-size: 1.6rem; cursor: pointer; color: var(--gray-200);
+  transition: color .15s; background: none; border: none; padding: 0;
+}
+.star-btn.active, .star-btn:hover { color: var(--gold); }
+.rating-form textarea {
+  width: 100%; border: 1px solid var(--gray-200); border-radius: 8px;
+  padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem;
+  resize: none; margin: 0.5rem 0; outline: none; transition: border-color .2s;
+}
+.rating-form textarea:focus { border-color: var(--blue-brand); }
+
+/* ── AUTH MODAL ── */
+.auth-tabs { display: flex; border-bottom: 2px solid var(--gray-200); margin-bottom: 1.5rem; }
+.auth-tab {
+  flex: 1; padding: 0.75rem; text-align: center; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.9rem; cursor: pointer; border: none; background: transparent;
+  color: var(--gray-400); border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: all .2s;
+}
+.auth-tab.active { color: var(--blue-brand); border-bottom-color: var(--blue-brand); }
+.auth-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.form-label { font-size: 0.82rem; font-weight: 600; color: var(--gray-600); }
+.form-input {
+  border: 1.5px solid var(--gray-200); border-radius: 8px;
+  padding: 0.7rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  outline: none; transition: border-color .2s;
+}
+.form-input:focus { border-color: var(--blue-brand); }
+.user-type-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.type-option {
+  border: 2px solid var(--gray-200); border-radius: 10px; padding: 1rem;
+  text-align: center; cursor: pointer; transition: all .2s;
+}
+.type-option:hover, .type-option.selected { border-color: var(--blue-brand); background: var(--blue-light); }
+.type-option .type-icon { font-size: 1.5rem; display: block; margin-bottom: 0.4rem; }
+.type-option .type-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--blue-brand); }
+
+/* ── DASHBOARD ── */
+.dashboard { display: none; min-height: 100vh; background: var(--gray-50); padding-top: 68px; }
+.dashboard.active { display: block; }
+.dash-layout { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 68px); }
+.dash-sidebar {
+  background: var(--blue-deep); padding: 2rem 1.5rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.dash-nav-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.75rem 1rem; border-radius: 10px; cursor: pointer;
+  color: rgba(255,255,255,0.6); font-size: 0.88rem; font-weight: 500;
+  transition: all .2s; text-decoration: none;
+}
+.dash-nav-item:hover, .dash-nav-item.active { background: rgba(255,255,255,0.1); color: var(--white); }
+.dash-nav-icon { font-size: 1.1rem; }
+.dash-content { padding: 2.5rem; }
+.dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.dash-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.kpi-card {
+  background: var(--white); border-radius: var(--radius); padding: 1.5rem;
+  border: 1px solid var(--gray-200); box-shadow: var(--shadow);
+}
+.kpi-icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+.kpi-value { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--gray-800); }
+.kpi-label { font-size: 0.8rem; color: var(--gray-400); margin-top: 0.2rem; }
+.kpi-trend { font-size: 0.78rem; color: var(--green); font-weight: 600; margin-top: 0.5rem; }
+
+/* ── HOW IT WORKS ── */
+.how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.how-step { text-align: center; }
+.step-num {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--blue-brand); color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
+  margin: 0 auto 1rem; box-shadow: 0 4px 16px rgba(30,95,204,0.35);
+}
+.step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+.step-desc { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; }
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+  padding: 5rem 5%; text-align: center; position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(30,95,204,0.25) 0%, transparent 70%);
+}
+.cta-banner h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: var(--white); margin-bottom: 1rem; position: relative; }
+.cta-banner p { color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 2rem; position: relative; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--blue-deep); color: rgba(255,255,255,0.6);
+  padding: 4rem 5% 2rem; border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--white); margin-bottom: 0.75rem; }
+.footer-brand .logo span { color: var(--orange); }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 260px; }
+.footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--white); font-size: 0.9rem; margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: 0.82rem; margin-bottom: 0.5rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.78rem; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 3000;
+  background: var(--gray-800); color: var(--white);
+  padding: 0.9rem 1.5rem; border-radius: 12px; font-size: 0.88rem;
+  box-shadow: var(--shadow-lg); transform: translateY(120px); opacity: 0;
+  transition: all .4s cubic-bezier(.34,1.56,.64,1);
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ── LOADING ── */
+.loading { text-align: center; padding: 4rem 0; color: var(--gray-400); font-size: 0.9rem; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .dash-layout { grid-template-columns: 1fr; }
+  .dash-sidebar { flex-direction: row; flex-wrap: wrap; padding: 1rem; overflow-x: auto; }
+}
+@media (max-width: 640px) {
+  .navbar-links { display: none; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-search { flex-direction: column; }
+  .modal-header { flex-direction: column; }
+}
+
+/* ── PAGE TRANSITIONS ── */
+.page { display: none; animation: fadeIn .35s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="navbar-logo" href="#" onclick="showPage('home')">Obra<span>Já</span></a>
+  <ul class="navbar-links">
+    <li><a href="#" onclick="showPage('home')">Início</a></li>
+    <li><a href="#" onclick="showPage('listings')">Profissionais</a></li>
+    <li><a href="#categorias">Categorias</a></li>
+    <li><a href="#como-funciona">Como Funciona</a></li>
+  </ul>
+  <div class="navbar-actions">
+    <button class="btn btn-ghost" onclick="openModal('authModal')">Entrar</button>
+    <button class="btn btn-orange" onclick="openModal('authModal')">Cadastrar</button>
+  </div>
+</nav>
+
+<!-- PAGE: HOME -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-tag">🏗️ Plataforma de construção civil</div>
+        <h1>Encontre o profissional certo para sua <span class="highlight">obra</span></h1>
+        <p>Conectamos você aos melhores pedreiros, eletricistas, encanadores, arquitetos e muito mais. Rápido, seguro e avaliado.</p>
+        <div class="hero-search">
+          <input type="text" id="heroSearch" placeholder="Que serviço você precisa?" />
+          <select id="heroCity">
+            <option value="">Cidade</option>
+            <option>Rio de Janeiro</option>
+            <option>Niterói</option>
+            <option>São Paulo</option>
+            <option>Belo Horizonte</option>
+            <option>Curitiba</option>
+            <option>Salvador</option>
+            <option>Recife</option>
+          </select>
+          <button class="btn btn-orange" onclick="doSearch()">Buscar</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-num">2.400+</div><div class="stat-label">Profissionais</div></div>
+          <div class="stat"><div class="stat-num">18.000+</div><div class="stat-label">Serviços realizados</div></div>
+          <div class="stat"><div class="stat-num">4.8★</div><div class="stat-label">Avaliação média</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-float">
+          <div class="pro-card-mini">
+            <div class="pro-avatar-lg">👷</div>
+            <div>
+              <div class="pro-name">Carlos Mendes</div>
+              <div class="pro-role">Mestre de Obras</div>
+              <span class="verified-badge">✓ Verificado</span>
+            </div>
+          </div>
+          <div class="rating-line">
+            <div class="stars">★★★★★</div>
+            <span class="rating-num">5.0</span>
+            <span class="rating-count">(142 avaliações)</span>
+          </div>
+          <div class="gallery-mini">
+            <div class="gallery-mini-item" style="background:#DBEAFE">🏠</div>
+            <div class="gallery-mini-item" style="background:#D1FAE5">🔨</div>
+            <div class="gallery-mini-item" style="background:#FEF3C7">🪵</div>
+          </div>
+        </div>
+        <div class="float-badge badge-1"><div class="float-dot dot-green"></div>Online agora</div>
+        <div class="float-badge badge-2"><div class="float-dot dot-orange"></div>Orçamento em 2h</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <div class="section-full cats-bg" id="categorias">
+    <div class="section" style="padding-top:0;padding-bottom:0;max-width:1200px;margin:0 auto">
+      <div class="section-label">O que você precisa?</div>
+      <div class="section-title">Categorias de serviço</div>
+      <div class="section-sub">Encontre o especialista certo para cada etapa da sua obra.</div>
+      <div class="cats-grid">
+        <a class="cat-card" onclick="filterCategory('Reforma')">
+          <span class="cat-icon">🏚️</span>
+          <span class="cat-name">Reforma</span>
+          <span class="cat-count">384 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Elétrica')">
+          <span class="cat-icon">⚡</span>
+          <span class="cat-name">Elétrica</span>
+          <span class="cat-count">276 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Hidráulica')">
+          <span class="cat-icon">🪠</span>
+          <span class="cat-name">Hidráulica</span>
+          <span class="cat-count">198 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Estrutural')">
+          <span class="cat-icon">🏗️</span>
+          <span class="cat-name">Estrutural</span>
+          <span class="cat-count">143 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Acabamento')">
+          <span class="cat-icon">🪣</span>
+          <span class="cat-name">Acabamento</span>
+          <span class="cat-count">312 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Pintura')">
+          <span class="cat-icon">🖌️</span>
+          <span class="cat-name">Pintura</span>
+          <span class="cat-count">224 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Arquitetura')">
+          <span class="cat-icon">📐</span>
+          <span class="cat-name">Arquitetura</span>
+          <span class="cat-count">89 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Jardinagem')">
+          <span class="cat-icon">🌿</span>
+          <span class="cat-name">Jardinagem</span>
+          <span class="cat-count">117 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Ar Condicionado')">
+          <span class="cat-icon">❄️</span>
+          <span class="cat-name">Ar Condicionado</span>
+          <span class="cat-count">156 profissionais</span>
+        </a>
+        <a class="cat-card" onclick="filterCategory('Carpintaria')">
+          <span class="cat-icon">🪚</span>
+          <span class="cat-name">Carpintaria</span>
+          <span class="cat-count">98 profissionais</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PROVIDERS -->
+  <div class="section">
+    <div class="section-label">Mais bem avaliados</div>
+    <div class="section-title">Profissionais em destaque</div>
+    <div class="section-sub">Verificados e avaliados pela nossa comunidade.</div>
+    <div style="margin-top:2.5rem" id="featuredGrid"></div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="btn btn-outline btn-lg" onclick="showPage('listings')">Ver todos os profissionais →</button>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section-full" id="como-funciona" style="background:var(--gray-50)">
+    <div class="section" style="padding-top:0;padding-bottom:0;max-width:1200px;margin:0 auto">
+      <div class="section-label">Simples e rápido</div>
+      <div class="section-title">Como funciona</div>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="step-num">1</div>
+          <div class="step-title">Busque o serviço</div>
+          <div class="step-desc">Digite o tipo de serviço que você precisa e filtre por cidade ou bairro.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">2</div>
+          <div class="step-title">Compare profissionais</div>
+          <div class="step-desc">Veja perfis, avaliações, portfólio e preços. Escolha o melhor para você.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">3</div>
+          <div class="step-title">Solicite orçamento</div>
+          <div class="step-desc">Entre em contato pelo WhatsApp ou formulário e receba orçamento rapidamente.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">4</div>
+          <div class="step-title">Avalie o serviço</div>
+          <div class="step-desc">Após o serviço, deixe sua avaliação e ajude outros clientes a escolher.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <h2>É profissional da construção civil?</h2>
+    <p>Cadastre-se gratuitamente e comece a receber clientes hoje mesmo. Sem mensalidade para começar.</p>
+    <div class="cta-btns">
+      <button class="btn btn-orange btn-lg" onclick="openModal('authModal')">Cadastrar como profissional</button>
+      <button class="btn btn-ghost btn-lg" onclick="openModal('authModal')">Já tenho conta</button>
+    </div>
+  </div>
+
+</div><!-- /page-home -->
+
+<!-- PAGE: LISTINGS -->
+<div id="page-listings" class="page" style="padding-top:68px;background:var(--gray-50);min-height:100vh">
+  <div style="max-width:1200px;margin:0 auto;padding:2.5rem 5%">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
+      <div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800">Profissionais</h2>
+        <p id="listingsCount" style="color:var(--gray-400);font-size:0.85rem;margin-top:0.25rem"></p>
+      </div>
+      <button class="btn btn-primary" onclick="openModal('authModal')">+ Anunciar serviço</button>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-group">
+        <span class="filter-label">Serviço</span>
+        <input type="text" id="filterService" placeholder="Ex: pedreiro, eletricista..." onkeyup="applyFilters()">
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Cidade</span>
+        <select id="filterCity" onchange="applyFilters()">
+          <option value="">Todas</option>
+          <option>Rio de Janeiro</option>
+          <option>Niterói</option>
+          <option>São Paulo</option>
+          <option>Belo Horizonte</option>
+          <option>Curitiba</option>
+          <option>Salvador</option>
+          <option>Recife</option>
+        </select>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Especialidade</span>
+        <select id="filterSpec" onchange="applyFilters()">
+          <option value="">Todas</option>
+          <option>Reforma</option>
+          <option>Elétrica</option>
+          <option>Hidráulica</option>
+          <option>Estrutural</option>
+          <option>Acabamento</option>
+          <option>Pintura</option>
+          <option>Arquitetura</option>
+          <option>Jardinagem</option>
+          <option>Ar Condicionado</option>
+          <option>Carpintaria</option>
+        </select>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Ordenar por</span>
+        <select id="filterSort" onchange="applyFilters()">
+          <option value="rating">Melhor avaliação</option>
+          <option value="reviews">Mais avaliações</option>
+          <option value="price">Menor preço</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="providers-grid" id="listingsGrid"></div>
+  </div>
+</div><!-- /page-listings -->
+
+<!-- DASHBOARD -->
+<div id="page-dashboard" class="page" style="padding-top:68px;background:var(--gray-50);min-height:100vh">
+  <div style="max-width:1200px;margin:0 auto;padding:2.5rem 5%">
+    <div class="dash-header">
+      <div>
+        <div class="section-label">Painel do Profissional</div>
+        <div class="dash-title">Bem-vindo de volta, Carlos! 👋</div>
+      </div>
+      <button class="btn btn-orange" onclick="openModal('authModal')">+ Novo Anúncio</button>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon">👁️</div>
+        <div class="kpi-value">1.284</div>
+        <div class="kpi-label">Visualizações este mês</div>
+        <div class="kpi-trend">↑ +18% vs. mês anterior</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">💬</div>
+        <div class="kpi-value">37</div>
+        <div class="kpi-label">Contatos recebidos</div>
+        <div class="kpi-trend">↑ +9% vs. mês anterior</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">⭐</div>
+        <div class="kpi-value">4.9</div>
+        <div class="kpi-label">Avaliação média</div>
+        <div class="kpi-trend">142 avaliações no total</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📋</div>
+        <div class="kpi-value">3</div>
+        <div class="kpi-label">Anúncios ativos</div>
+        <div class="kpi-trend">1 em destaque premium</div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:var(--radius-lg);padding:1.5rem;border:1px solid var(--gray-200);margin-bottom:1.5rem">
+      <div class="modal-section-title">Avaliações recentes</div>
+      <div class="reviews-list" id="dashReviews"></div>
+    </div>
+
+    <div style="background:var(--white);border-radius:var(--radius-lg);padding:1.5rem;border:1px solid var(--gray-200)">
+      <div class="modal-section-title" style="margin-bottom:1rem">Meus anúncios</div>
+      <div id="dashAds" style="display:flex;flex-direction:column;gap:0.75rem"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: PROVIDER DETAILS -->
+<div class="modal-overlay" id="providerModal" onclick="closeModalOutside(event,'providerModal')">
+  <div class="modal" id="providerModalContent"></div>
+</div>
+
+<!-- MODAL: AUTH -->
+<div class="modal-overlay" id="authModal" onclick="closeModalOutside(event,'authModal')">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-body">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+        <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem">Acesse sua conta</span>
+        <button class="modal-close" onclick="closeModal('authModal')" style="position:static;background:var(--gray-100);color:var(--gray-600)">✕</button>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchTab('login')">Entrar</button>
+        <button class="auth-tab" onclick="switchTab('register')">Cadastrar</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="tab-login">
+        <div class="auth-form">
+          <div class="form-group">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-input" placeholder="seu@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Senha</label>
+            <input type="password" class="form-input" placeholder="••••••••">
+          </div>
+          <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center" onclick="doLogin()">Entrar na conta</button>
+          <p style="text-align:center;font-size:0.82rem;color:var(--gray-400)">Não tem conta? <a href="#" onclick="switchTab('register')" style="color:var(--blue-brand)">Cadastre-se</a></p>
+        </div>
+      </div>
+
+      <!-- REGISTER -->
+      <div id="tab-register" style="display:none">
+        <div class="auth-form">
+          <div class="user-type-picker">
+            <div class="type-option selected" onclick="selectType(this,'client')">
+              <span class="type-icon">🏠</span>
+              <span class="type-name">Sou cliente</span>
+            </div>
+            <div class="type-option" onclick="selectType(this,'pro')">
+              <span class="type-icon">👷</span>
+              <span class="type-name">Sou profissional</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nome completo</label>
+            <input type="text" class="form-input" placeholder="Seu nome">
+          </div>
+          <div class="form-group">
+            <label class="form-label">E-mail</label>
+            <input type="email" class="form-input" placeholder="seu@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp</label>
+            <input type="tel" class="form-input" placeholder="(21) 99999-9999">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Senha</label>
+            <input type="password" class="form-input" placeholder="••••••••">
+          </div>
+          <button class="btn btn-orange btn-lg" style="width:100%;justify-content:center" onclick="doRegister()">Criar conta gratuita</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Obra<span>Já</span></div>
+      <p>A plataforma que conecta você aos melhores profissionais da construção civil. Seguro, rápido e confiável.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Plataforma</h4>
+      <a href="#">Como funciona</a>
+      <a href="#">Categorias</a>
+      <a href="#">Profissionais verificados</a>
+      <a href="#">Avaliações</a>
+    </div>
+    <div class="footer-col">
+      <h4>Para profissionais</h4>
+      <a href="#">Cadastrar perfil</a>
+      <a href="#">Planos premium</a>
+      <a href="#">Dicas de conversão</a>
+      <a href="#">Central de ajuda</a>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <a href="#">Sobre nós</a>
+      <a href="#">Blog</a>
+      <a href="#">Termos de uso</a>
+      <a href="#">Privacidade</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ObraJá. Todos os direitos reservados.</span>
+    <span>Feito com ❤️ para a construção civil brasileira</span>
+  </div>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+const providers = [
+  {
+    id: 1, name: "Carlos Mendes", emoji: "👷", role: "Mestre de Obras",
+    specialty: "Reforma", city: "Niterói", state: "RJ",
+    rating: 5.0, reviews: 142, price: "R$ 180/dia",
+    verified: true, premium: true,
+    bio: "Mais de 20 anos de experiência em obras residenciais e comerciais. Especialista em reformas completas e construção do zero. Trabalho com equipe própria e entrego no prazo.",
+    services: ["Reforma completa", "Alvenaria", "Reboco", "Contrapiso", "Fundação", "Estrutura"],
+    gallery: ["<img src='10.png' width='200' height='200' alt='Trabalho 1'>","<img src='12.png' width='200' height='200' alt='Trabalho 1'>","🪵","<img src='11.png' width='200' height='200' alt='Trabalho 1'>","<img src='13.png' width='200' height='200' alt='Trabalho 1'>","🛠️"],
+    phone: "21991234567",
+    comments: [
+      { user: "Ana Silva", avatar: "👩", stars: 5, date: "Mar 2026", text: "Carlos reformou minha cozinha inteira em apenas 12 dias. Trabalho impecável e dentro do orçamento combinado!" },
+      { user: "Roberto Lima", avatar: "👨", stars: 5, date: "Fev 2026", text: "Profissional exemplar. Pontual, organizado e entregou tudo no prazo. Já indiquei para vários amigos." },
+      { user: "Fernanda Costa", avatar: "👩‍💼", stars: 4, date: "Jan 2026", text: "Ótimo serviço, só tive que esperar um pouco mais do que o previsto, mas o resultado final foi excelente." }
+    ]
+  },
+  {
+    id: 2, name: "Mário Elétrica", emoji: "⚡", role: "Eletricista Certificado",
+    specialty: "Elétrica", city: "Rio de Janeiro", state: "RJ",
+    rating: 4.9, reviews: 98, price: "R$ 150/hr",
+    verified: true, premium: false,
+    bio: "Eletricista com CREA ativo e mais de 15 anos de experiência. Instalações residenciais e comerciais, projetos elétricos, laudos de vistoria e manutenção preventiva.",
+    services: ["Instalação elétrica", "Quadro de distribuição", "Tomadas e iluminação", "SPDA (Para-raios)", "Laudo de vistoria", "Projeto elétrico"],
+    gallery: ["<img src='2.png' width='200' height='200' alt='Trabalho 1'>","<img src='3.png' width='200' height='200' alt='Trabalho 1'>","💡","<img src='1.jpg' width='200' height='200' alt='Eletricista'>","<img src='6.png' width='200' height='200' alt='Trabalho 1'>","📋"],
+    phone: "21998765432",
+    comments: [
+      { user: "Pedro Souza", avatar: "👨", stars: 5, date: "Abr 2026", text: "Resolveu um problema elétrico que outros não conseguiam em minutos. Extremamente competente." },
+      { user: "Camila Rocha", avatar: "👩", stars: 5, date: "Mar 2026", text: "Instalou todo o sistema de iluminação da minha loja. Caprichoso e honesto." }
+    ]
+  },
+  {
+    id: 3, name: "João Hidráulica", emoji: "🪠", role: "Encanador Especialista",
+    specialty: "Hidráulica", city: "São Paulo", state: "SP",
+    rating: 4.8, reviews: 76, price: "R$ 130/hr",
+    verified: true, premium: false,
+    bio: "Especialista em hidráulica residencial e comercial. Detecção de vazamentos, troca de tubulações, instalação de aquecedores e projetos hidráulicos completos.",
+    services: ["Detecção de vazamentos", "Troca de tubulações", "Aquecedor solar", "Caixa d'água", "Esgoto", "Reformas banheiro"],
+    gallery: ["<img src='1.png' width='200' height='200' alt='Trabalho 1'>","<img src='9.png' width='200' height='200' alt='Trabalho 1'>","🛁","<img src='7.png' width='200' height='200' alt='Trabalho 1'>","🔧","🏗️"],
+    phone: "11987654321",
+    comments: [
+      { user: "Lúcia Ferreira", avatar: "👩", stars: 5, date: "Abr 2026", text: "Encontrou um vazamento que a gente não sabia onde era há meses! Muito competente." },
+      { user: "Antônio Neves", avatar: "👴", stars: 4, date: "Mar 2026", text: "Bom serviço, preço justo. Recomendo." }
+    ]
+  },
+  {
+    id: 4, name: "Arq. Beatriz Santos", emoji: "📐", role: "Arquiteta e Urbanista",
+    specialty: "Arquitetura", city: "Belo Horizonte", state: "MG",
+    rating: 5.0, reviews: 54, price: "Sob consulta",
+    verified: true, premium: true,
+    bio: "Arquiteta com CAU ativo, especializada em projetos residenciais modernos, reformas de interiores e design de interiores. Atendo todo Brasil de forma remota.",
+    services: ["Projeto arquitetônico", "Projeto de interiores", "Reforma residencial", "Consultoria", "Render 3D", "Acompanhamento de obra"],
+    gallery: ["<img src='25.png' width='200' height='200' alt='Trabalho 1'>","<img src='27.png' width='200' height='200' alt='Trabalho 1'>","🖼️","<img src='26.png' width='200' height='200' alt='Trabalho 1'>","🪑","💡"],
+    phone: "31999887766",
+    comments: [
+      { user: "Mariana Duarte", avatar: "👩‍💻", stars: 5, date: "Abr 2026", text: "Beatriz transformou completamente meu apartamento. O projeto ficou incrível e ela acompanhou tudo." },
+      { user: "Henrique Vaz", avatar: "👨", stars: 5, date: "Mar 2026", text: "Profissional incrível, entende exatamente o que você quer e entrega além das expectativas." }
+    ]
+  },
+  {
+    id: 5, name: "Paulo Pintor", emoji: "🖌️", role: "Pintor Profissional",
+    specialty: "Pintura", city: "Curitiba", state: "PR",
+    rating: 4.7, reviews: 88, price: "R$ 120/dia",
+    verified: false, premium: false,
+    bio: "Pintor com 12 anos de experiência em pinturas internas e externas, texturas, grafiato, verniz e pintura industrial. Atendo residências, empresas e condomínios.",
+    services: ["Pintura interna", "Pintura externa", "Textura", "Grafiato", "Verniz madeira", "Pintura industrial"],
+    gallery: ["<img src='14.png' width='200' height='200' alt='Trabalho 1'>","🪣","🎨","<img src='15.png' width='200' height='200' alt='Trabalho 1'>","✨","🧱"],
+    phone: "41988776655",
+    comments: [
+      { user: "Sandra Lima", avatar: "👩", stars: 5, date: "Mar 2026", text: "Paulo pintou toda a minha casa em 3 dias. Trabalho limpo, cuidadoso e sem manchar nada." },
+      { user: "Fernando Costa", avatar: "👨", stars: 4, date: "Fev 2026", text: "Bom trabalho, mas demorou um dia a mais do combinado. O resultado ficou ótimo mesmo assim." }
+    ]
+  },
+  {
+    id: 6, name: "Roberto Carpinteiro", emoji: "🪚", role: "Marceneiro e Carpinteiro",
+    specialty: "Carpintaria", city: "Salvador", state: "BA",
+    rating: 4.9, reviews: 61, price: "R$ 200/dia",
+    verified: true, premium: false,
+    bio: "Marceneiro e carpinteiro com 18 anos de experiência. Especializado em móveis planejados, armários embutidos, decks e estruturas em madeira. Trabalho com madeiras nobres.",
+    services: ["Móveis planejados", "Armários embutidos", "Deck", "Forros de madeira", "Portas e janelas", "Restauração"],
+    gallery: ["<img src='19.png' width='200' height='200' alt='Trabalho 1'>","<img src='21.png' width='200' height='200' alt='Trabalho 1'>","🛋️","<img src='20.png' width='200' height='200' alt='Trabalho 1'>","🏠","✨"],
+    phone: "71997665544",
+    comments: [
+      { user: "Vanessa Melo", avatar: "👩", stars: 5, date: "Abr 2026", text: "Roberto fez um deck maravilhoso no meu quintal. Acabamento perfeito e no preço combinado!" },
+      { user: "Cláudio Ramos", avatar: "👨", stars: 5, date: "Mar 2026", text: "Armários embutidos de alta qualidade. Recomendo sem hesitar." }
+    ]
+  },
+  {
+    id: 7, name: "LR REFRIGERAÇÃO", emoji: "❄️", role: "Técnico de HVAC",
+    specialty: "Ar Condicionado", city: "Rio de Janeiro", state: "RJ",
+    rating: 4.8, reviews: 43, price: "R$ 160/serviço",
+    verified: true, premium: false,
+    bio: "Técnico especializado em instalação, manutenção e limpeza de ar condicionado. Atendo residências, escritórios e indústrias. Todas as marcas e modelos.",
+    services: ["Instalação de ar condicionado", "Manutenção preventiva", "Limpeza higienização", "Recarga de gás", "Reparo de defeitos", "Projetos HVAC"],
+    gallery: ["<img src='16.png' width='200' height='200' alt='Trabalho 1'>","<img src='18.png' width='200' height='200' alt='Trabalho 1'>","🌬️","<img src='17.png' width='200' height='200' alt='Trabalho 1'>","🛠️","📋"],
+    phone: "81996554433",
+    comments: [
+      { user: "Renata Alves", avatar: "👩", stars: 5, date: "Mar 2026", text: "Instalou o split em menos de 2h e deixou tudo limpo. Excelente profissional!" }
+    ]
+  },
+  {
+    id: 8, name: "Eng. Pedro Alves", emoji: "🏗️", role: "Engenheiro Civil",
+    specialty: "Estrutural", city: "Rio de Janeiro", state: "RJ",
+    rating: 5.0, reviews: 29, price: "Sob consulta",
+    verified: true, premium: true,
+    bio: "Engenheiro Civil com CREA ativo e 16 anos de experiência em projetos estruturais, laudos técnicos, acompanhamento de obras e perícias. Especialista em patologias.",
+    services: ["Projeto estrutural", "Laudo técnico", "Perícia", "Acompanhamento de obra", "ART", "Patologias de construção"],
+    gallery: ["<img src='22.png' width='200' height='200' alt='Trabalho 1'>","<img src='24.png' width='200' height='200' alt='Trabalho 1'>","📋","<img src='23.png' width='200' height='200' alt='Trabalho 1'>","🔬","📊"],
+    phone: "21995443322",
+    comments: [
+      { user: "Marcos Braga", avatar: "👨", stars: 5, date: "Abr 2026", text: "Pedro elaborou o projeto estrutural da nossa casa. Muito detalhado e seguro. Confiança total!" }
+    ]
+  }
+];
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let filteredProviders = [...providers];
+let activeRating = 0;
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+window.onload = () => {
+  renderFeatured();
+  renderListings(providers);
+  renderDashboard();
+};
+
+// ── PAGES ──────────────────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── RENDER HELPERS ─────────────────────────────────────────────────────────
+function starsHTML(rating) {
+  const full = Math.floor(rating);
+  let s = '';
+  for (let i = 1; i <= 5; i++) s += i <= full ? '★' : '☆';
+  return s;
+}
+
+function providerCardHTML(p) {
+  const bannerColors = {
+    'Reforma':'#DBEAFE','Elétrica':'#FEF3C7','Hidráulica':'#D1FAE5',
+    'Estrutural':'#FCE7F3','Acabamento':'#E0E7FF','Pintura':'#FFE4E6',
+    'Arquitetura':'#F3E8FF','Jardinagem':'#D1FAE5','Ar Condicionado':'#CFFAFE','Carpintaria':'#FEF3C7'
+  };
+  const bg = bannerColors[p.specialty] || '#EEF2FF';
+  return `
+    <div class="provider-card" onclick="openProvider(${p.id})">
+      ${p.premium ? '<div class="premium-badge">⭐ Destaque</div>' : ''}
+      <div class="card-banner" style="background:${bg}">${p.emoji}</div>
+      <div class="card-avatar" style="background:${bg}">${p.emoji}</div>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-role">${p.role}</div>
+        <div class="card-badges">
+          <span class="badge badge-blue">${p.specialty}</span>
+          ${p.verified ? '<span class="badge badge-green">✓ Verificado</span>' : ''}
+        </div>
+        <div class="card-rating">
+          <span class="stars">${starsHTML(p.rating)}</span>
+          <strong style="font-size:.88rem">${p.rating.toFixed(1)}</strong>
+          <span style="font-size:.75rem;color:var(--gray-400)">(${p.reviews})</span>
+        </div>
+        <div class="card-meta">
+          <span>📍 ${p.city}</span>
+          <span class="card-price">${p.price}</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-outline" onclick="event.stopPropagation();openProvider(${p.id})">Ver perfil</button>
+          <button class="btn btn-primary" onclick="event.stopPropagation();contactWhatsapp(${p.id})">💬 WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderFeatured() {
+  const top = [...providers].sort((a,b) => b.rating - a.rating || b.reviews - a.reviews).slice(0,4);
+  document.getElementById('featuredGrid').innerHTML = `<div class="providers-grid">${top.map(providerCardHTML).join('')}</div>`;
+}
+
+function renderListings(list) {
+  const grid = document.getElementById('listingsGrid');
+  document.getElementById('listingsCount').textContent = `${list.length} profissionais encontrados`;
+  if (list.length === 0) {
+    grid.innerHTML = '<p style="color:var(--gray-400);grid-column:1/-1;text-align:center;padding:3rem 0">Nenhum profissional encontrado com os filtros selecionados.</p>';
+  } else {
+    grid.innerHTML = list.map(providerCardHTML).join('');
+  }
+}
+
+// ── FILTERS ──────────────────────────────────────────────────────────────
+function applyFilters() {
+  const svc = document.getElementById('filterService').value.toLowerCase();
+  const city = document.getElementById('filterCity').value;
+  const spec = document.getElementById('filterSpec').value;
+  const sort = document.getElementById('filterSort').value;
+
+  let list = providers.filter(p => {
+    const matchSvc = !svc || p.name.toLowerCase().includes(svc) || p.role.toLowerCase().includes(svc) || p.specialty.toLowerCase().includes(svc) || p.services.some(s => s.toLowerCase().includes(svc));
+    const matchCity = !city || p.city === city;
+    const matchSpec = !spec || p.specialty === spec;
+    return matchSvc && matchCity && matchSpec;
+  });
+
+  if (sort === 'rating') list.sort((a,b) => b.rating - a.rating);
+  else if (sort === 'reviews') list.sort((a,b) => b.reviews - a.reviews);
+  else if (sort === 'price') list.sort((a,b) => {
+    const getNum = p => parseFloat(p.price.replace(/[^\d]/g,'')) || 9999;
+    return getNum(a) - getNum(b);
+  });
+
+  renderListings(list);
+}
+
+function filterCategory(cat) {
+  showPage('listings');
+  setTimeout(() => {
+    document.getElementById('filterSpec').value = cat;
+    applyFilters();
+  }, 50);
+}
+
+function doSearch() {
+  const q = document.getElementById('heroSearch').value;
+  const city = document.getElementById('heroCity').value;
+  showPage('listings');
+  setTimeout(() => {
+    document.getElementById('filterService').value = q;
+    document.getElementById('filterCity').value = city;
+    applyFilters();
+  }, 50);
+}
+
+// ── PROVIDER MODAL ─────────────────────────────────────────────────────────
+function openProvider(id) {
+  const p = providers.find(x => x.id === id);
+  if (!p) return;
+  const reviewsHTML = p.comments.map(c => `
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-avatar">${c.avatar}</div>
+        <div>
+          <div class="review-name">${c.user}</div>
+          <div class="stars" style="font-size:.8rem">${starsHTML(c.stars)}</div>
+        </div>
+        <span class="review-date" style="margin-left:auto">${c.date}</span>
+      </div>
+      <div class="review-text">${c.text}</div>
+    </div>
+  `).join('');
+
+  const galleryHTML = p.gallery.map(g => `<div class="gallery-item">${g}</div>`).join('');
+
+  document.getElementById('providerModalContent').innerHTML = `
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal('providerModal')">✕</button>
+      <div class="modal-avatar">${p.emoji}</div>
+      <div class="modal-info">
+        <div class="modal-name">${p.name}</div>
+        <div class="modal-role">${p.role} · 📍 ${p.city}, ${p.state}</div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.5rem">
+          <span class="badge badge-blue" style="background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.2)">${p.specialty}</span>
+          ${p.verified ? '<span class="verified-badge">✓ Verificado</span>' : ''}
+          ${p.premium ? '<span style="background:linear-gradient(135deg,#F59E0B,#EF4444);color:white;border-radius:999px;padding:.2rem .6rem;font-size:.7rem;font-weight:700">⭐ PREMIUM</span>' : ''}
+        </div>
+        <div class="rating-line" style="margin-top:.6rem">
+          <div class="stars">${starsHTML(p.rating)}</div>
+          <span style="color:white;font-weight:700">${p.rating.toFixed(1)}</span>
+          <span style="color:rgba(255,255,255,.5);font-size:.78rem">(${p.reviews} avaliações)</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title">Sobre o profissional</div>
+        <p style="font-size:.88rem;color:var(--gray-600);line-height:1.7">${p.bio}</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Serviços oferecidos</div>
+        <div class="services-list">${p.services.map(s => `<span class="service-tag">${s}</span>`).join('')}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Galeria de trabalhos</div>
+        <div class="gallery-grid">${galleryHTML}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Avaliações de clientes</div>
+        <div class="reviews-list">${reviewsHTML}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Deixe sua avaliação</div>
+        <div class="rating-form">
+          <div style="font-size:.85rem;color:var(--gray-600);margin-bottom:.35rem">Sua nota:</div>
+          <div class="stars-input" id="starsInput">
+            ${[1,2,3,4,5].map(i => `<button class="star-btn" onclick="setRating(${i},${p.id})" data-val="${i}">★</button>`).join('')}
+          </div>
+          <textarea id="reviewText" rows="3" placeholder="Conte como foi sua experiência com ${p.name.split(' ')[0]}..."></textarea>
+          <button class="btn btn-primary" onclick="submitReview(${p.id})">Enviar avaliação</button>
+        </div>
+      </div>
+      <div class="modal-actions" style="margin-top:1rem">
+        <button class="btn btn-orange btn-lg" onclick="contactWhatsapp(${p.id})">💬 WhatsApp</button>
+        <button class="btn btn-primary btn-lg" onclick="showToast('📋 Formulário de orçamento enviado!')">📋 Solicitar orçamento</button>
+      </div>
+    </div>
+  `;
+  openModal('providerModal');
+}
+
+function contactWhatsapp(id) {
+  const p = providers.find(x => x.id === id);
+  if (!p) return;
+  const msg = encodeURIComponent(`Olá ${p.name.split(' ')[0]}! Vi seu perfil no ObraJá e gostaria de solicitar um orçamento para ${p.specialty.toLowerCase()}.`);
+  window.open(`https://wa.me/55${p.phone}?text=${msg}`, '_blank');
+}
+
+// ── RATING ──────────────────────────────────────────────────────────────────
+function setRating(val, id) {
+  activeRating = val;
+  document.querySelectorAll('#starsInput .star-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.val) <= val);
+  });
+}
+
+function submitReview(id) {
+  if (!activeRating) { showToast('⚠️ Selecione uma nota antes de enviar.'); return; }
+  const text = document.getElementById('reviewText').value.trim();
+  if (!text) { showToast('⚠️ Escreva um comentário.'); return; }
+  showToast('✅ Avaliação enviada com sucesso! Obrigado.');
+  activeRating = 0;
+  document.getElementById('reviewText').value = '';
+  document.querySelectorAll('#starsInput .star-btn').forEach(b => b.classList.remove('active'));
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────
+function renderDashboard() {
+  const p = providers[0];
+  document.getElementById('dashReviews').innerHTML = p.comments.map(c => `
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-avatar">${c.avatar}</div>
+        <div><div class="review-name">${c.user}</div><div class="stars" style="font-size:.8rem">${starsHTML(c.stars)}</div></div>
+        <span class="review-date" style="margin-left:auto">${c.date}</span>
+      </div>
+      <div class="review-text">${c.text}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('dashAds').innerHTML = p.services.slice(0,3).map((s,i) => `
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem;background:var(--gray-50);border-radius:10px;border:1px solid var(--gray-200)">
+      <div style="display:flex;align-items:center;gap:.75rem">
+        <span style="font-size:1.3rem">${['🏠','🔨','🪵'][i]}</span>
+        <div>
+          <div style="font-weight:600;font-size:.9rem">${s}</div>
+          <div style="font-size:.78rem;color:var(--gray-400)">Ativo · ${Math.floor(Math.random()*200+50)} visualizações</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.5rem">
+        <button class="btn btn-outline" style="padding:.4rem .8rem;font-size:.78rem" onclick="showToast('✏️ Modo de edição em breve!')">Editar</button>
+        ${i===0 ? '<span class="badge" style="background:linear-gradient(135deg,#F59E0B,#EF4444);color:white;padding:.3rem .7rem;border-radius:999px;font-size:.72rem">⭐ Premium</span>' : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── AUTH ──────────────────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach((t,i) => {
+    t.classList.toggle('active', (i===0&&tab==='login')||(i===1&&tab==='register'));
+  });
+  document.getElementById('tab-login').style.display = tab==='login' ? 'block' : 'none';
+  document.getElementById('tab-register').style.display = tab==='register' ? 'block' : 'none';
+}
+
+function selectType(el, type) {
+  document.querySelectorAll('.type-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function doLogin() {
+  closeModal('authModal');
+  showToast('✅ Bem-vindo de volta! Acessando painel...');
+  setTimeout(() => showPage('dashboard'), 1000);
+}
+
+function doRegister() {
+  closeModal('authModal');
+  showToast('🎉 Conta criada com sucesso! Bem-vindo ao ObraJá!');
+  setTimeout(() => showPage('dashboard'), 1000);
+}
+
+// ── MODAL HELPERS ─────────────────────────────────────────────────────────
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e, id) {
+  if (e.target === document.getElementById(id)) closeModal(id);
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+</script>
+</body>
+</html>
